@@ -2,19 +2,35 @@
   "transactions": [
     {
     "id": 1,
-    "description": "Desenvolvimento de site",
+    "description": "Desenvolvimento da Loja",
     "type": "income",
     "category": "Venda",
-    "price": 1400,
+    "price": 1000,
     "createdAt": "2024-03-06T02:26:46.278Z"
     },
       {
       "id": 2,
-      "description": "Hamburguer",
+      "description": "Camisa Fear of God",
       "type": "outcome",
-      "category": "Comida",
-      "price": 29,
+      "category": "Vestuário",
+      "price": 399,
       "createdAt": "2024-03-06T02:26:46.278Z"
+    },
+    {
+      "id": 3,
+      "description": "Camisa Vlone x Pop Smoke",
+      "type": "outcome",
+      "category": "Vestuário",
+      "price": 599,
+      "createdAt": "2024-03-06T02:26:46.278Z" 
+    },
+    {
+      "id": 4,
+      "description": "Landing Page",
+      "type": "income",
+      "category": "Venda",
+      "price": 1099,
+      "createdAt": "2024-03-06T02:26:46.278Z" 
     }
   ]
 }
