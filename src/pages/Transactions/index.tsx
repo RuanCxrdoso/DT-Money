@@ -8,7 +8,7 @@ import { dateFormatter, numberFormatter } from "../../utils/formatter"
 
 export function Transactions() {
   const { transactions } = useContext(TransactionContext)
-  
+
   return (
     <div>
       <Header />
