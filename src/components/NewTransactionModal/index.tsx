@@ -1,5 +1,11 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { Content, Overlay, Close, TransactionType, TransactionTypeButton } from './style'
+import {
+  Content,
+  Overlay,
+  Close,
+  TransactionType,
+  TransactionTypeButton,
+} from './style'
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
 import * as zod from 'zod'
 import { Controller, useForm } from 'react-hook-form'
@@ -11,7 +17,7 @@ const NewTransactionModalSchema = zod.object({
   description: zod.string(),
   price: zod.number(),
   category: zod.string(),
-  type: zod.enum(['income', 'outcome'])
+  type: zod.enum(['income', 'outcome']),
 })
 
 type NewTransactionsModalType = zod.infer<typeof NewTransactionModalSchema>
@@ -19,14 +25,22 @@ type NewTransactionsModalType = zod.infer<typeof NewTransactionModalSchema>
 export function NewTransactionModal() {
   const { createTransaction } = useContext(TransactionContext)
 
-  const { reset, control, register, handleSubmit, formState: { isSubmitting } } = useForm<NewTransactionsModalType>({
+  const {
+    reset,
+    control,
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<NewTransactionsModalType>({
     resolver: zodResolver(NewTransactionModalSchema),
     defaultValues: {
-      type: 'income'
-    }
+      type: 'income',
+    },
   })
 
-  async function handleCreateNewTransactionSubmit(data: NewTransactionsModalType) {
+  async function handleCreateNewTransactionSubmit(
+    data: NewTransactionsModalType,
+  ) {
     const { description, price, category, type } = data
 
     await createTransaction({
@@ -47,26 +61,52 @@ export function NewTransactionModal() {
         <Dialog.Title>Nova Transação</Dialog.Title>
 
         <Close>
-          <X size={24}/>
+          <X size={24} />
         </Close>
 
         <form onSubmit={handleSubmit(handleCreateNewTransactionSubmit)}>
-          <input type="text" placeholder='Descrição' {...register('description')} required />
-          <input type="number" placeholder='Preço' {...register('price', { valueAsNumber: true })} required />
-          <input type="text" placeholder='Categoria' {...register('category')} required />
+          <input
+            type="text"
+            placeholder="Descrição"
+            {...register('description')}
+            required
+          />
+          <input
+            type="number"
+            placeholder="Preço"
+            {...register('price', { valueAsNumber: true })}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Categoria"
+            {...register('category')}
+            required
+          />
 
-          <Controller 
+          <Controller
             control={control}
-            name='type'
+            name="type"
             render={({ field }) => {
               return (
-                <TransactionType onValueChange={field.onChange} value={field.value}>
-                  <TransactionTypeButton variant='income' value='income' disabled={isSubmitting}>
+                <TransactionType
+                  onValueChange={field.onChange}
+                  value={field.value}
+                >
+                  <TransactionTypeButton
+                    variant="income"
+                    value="income"
+                    disabled={isSubmitting}
+                  >
                     <ArrowCircleUp size={24} />
                     <span>Entrada</span>
                   </TransactionTypeButton>
-      
-                  <TransactionTypeButton variant='outcome' value='outcome' disabled={isSubmitting}>
+
+                  <TransactionTypeButton
+                    variant="outcome"
+                    value="outcome"
+                    disabled={isSubmitting}
+                  >
                     <ArrowCircleDown size={24} />
                     <span>Saída</span>
                   </TransactionTypeButton>
@@ -75,11 +115,10 @@ export function NewTransactionModal() {
             }}
           />
 
-          <button type='submit' disabled={isSubmitting}>
+          <button type="submit" disabled={isSubmitting}>
             Cadastrar
           </button>
         </form>
-
       </Content>
     </Dialog.Portal>
   )

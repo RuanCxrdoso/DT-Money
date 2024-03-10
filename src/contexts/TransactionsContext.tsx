@@ -1,5 +1,5 @@
-import { ReactNode, createContext, useEffect, useState } from "react"
-import { api } from "../lib/axios"
+import { ReactNode, createContext, useEffect, useState } from 'react'
+import { api } from '../lib/axios'
 
 interface transactionsType {
   id: number
@@ -39,9 +39,9 @@ export function TransactionsProvider({ children }: ChildrenProp) {
         // _sort: 'createdAt',
         // _order: 'desc',
         q: query,
-      }
+      },
     })
-    
+
     setTransactions(response.data)
   }
 
@@ -56,7 +56,7 @@ export function TransactionsProvider({ children }: ChildrenProp) {
       createdAt: new Date(),
     })
 
-    setTransactions(state => [response.data, ...state])
+    setTransactions((state) => [response.data, ...state])
   }
 
   useEffect(() => {
@@ -64,7 +64,9 @@ export function TransactionsProvider({ children }: ChildrenProp) {
   }, [])
 
   return (
-    <TransactionContext.Provider value={{ transactions, fetchTransactions, createTransaction }}>
+    <TransactionContext.Provider
+      value={{ transactions, fetchTransactions, createTransaction }}
+    >
       {children}
     </TransactionContext.Provider>
   )
