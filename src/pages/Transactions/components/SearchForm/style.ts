@@ -12,6 +12,11 @@ export const SearchFormContainer = styled.form`
     color: ${(props) => props.theme['gray-300']};
     padding: 1rem;
 
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
     &::placeholder {
       color: ${(props) => props.theme['gray-500']};
     }

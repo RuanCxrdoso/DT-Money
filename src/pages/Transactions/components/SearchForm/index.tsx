@@ -20,11 +20,7 @@ export function SearchForm() {
     },
   )
 
-  const {
-    register,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm<SearchFormInputsType>({
+  const { register, handleSubmit } = useForm<SearchFormInputsType>({
     resolver: zodResolver(SearchFormSchema),
   })
 
@@ -38,11 +34,15 @@ export function SearchForm() {
         type="text"
         placeholder="Busque por transações..."
         {...register('query')}
+        disabled={true}
       />
-      <button type="submit" disabled={isSubmitting}>
+      <button type="submit" disabled={true}>
         <span>Buscar</span>
         <MagnifyingGlass size={20} />
       </button>
     </SearchFormContainer>
   )
 }
+
+// Alterar os disabled do forms quando descobrir o pq o q params do json-server não retorna os itens filtrados
+// export const SearchForm = memo(SearchFormComponent)
