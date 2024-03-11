@@ -3,8 +3,8 @@ import { SearchFormContainer } from './style'
 import { useForm } from 'react-hook-form'
 import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useContext } from 'react'
 import { TransactionContext } from '../../../../contexts/TransactionsContext'
+import { useContextSelector } from 'use-context-selector'
 
 const SearchFormSchema = zod.object({
   query: zod.string(),
@@ -13,13 +13,14 @@ const SearchFormSchema = zod.object({
 type SearchFormInputsType = zod.infer<typeof SearchFormSchema>
 
 export function SearchForm() {
-  const { fetchTransactions } = useContext(TransactionContext)
+  const fetchTransactions = useContextSelector(
+    TransactionContext,
+    (context) => {
+      return context.fetchTransactions
+    },
+  )
 
-  const {
-    register,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm<SearchFormInputsType>({
+  const { register, handleSubmit } = useForm<SearchFormInputsType>({
     resolver: zodResolver(SearchFormSchema),
   })
 
@@ -33,11 +34,15 @@ export function SearchForm() {
         type="text"
         placeholder="Busque por transações..."
         {...register('query')}
+        disabled={true}
       />
-      <button type="submit" disabled={isSubmitting}>
+      <button type="submit" disabled={true}>
         <span>Buscar</span>
         <MagnifyingGlass size={20} />
       </button>
     </SearchFormContainer>
   )
 }
+
+// Alterar os disabled do forms quando descobrir o pq o q params do json-server não retorna os itens filtrados
+// export const SearchForm = memo(SearchFormComponent)
