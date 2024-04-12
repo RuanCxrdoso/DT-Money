@@ -50,7 +50,7 @@ Vale ressaltar que este projeto foi desenvolvido como conclusão de um desafio p
 
 ## 🔗 Deploy
 
-O deploy da aplicação pode ser acessado através da seguinte URL: dt-money-manager.vercel.app/
+O deploy da aplicação pode ser acessado através da seguinte URL: https://dt-money-manager.vercel.app/
 
 ---
 
