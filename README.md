@@ -98,7 +98,7 @@ Veja uma demonstração das principais interfaces da aplicação:
 
 <p align="center">
   <img
-    src="./previewDTmoney.png"
+    src="https://github.com/RuanCxrdoso/DT-Money/assets/86266893/e195b9bc-372c-40f3-9fb6-cb797b77f85e"
     width="100%"
   />
 </p>
